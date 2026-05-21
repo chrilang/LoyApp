@@ -149,13 +149,19 @@ async function trySyncQueue() {
 
   const queueSnapshot = [...state.syncQueue];
   for (const event of queueSnapshot) {
-    const response = await fetch(SYNC_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(event),
-    });
+    let response;
+    try {
+      response = await fetch(SYNC_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(event),
+      });
+    } catch {
+      renderSyncStatus("Synk misslyckades (nätverksfel). Försöker igen senare.");
+      return;
+    }
     if (!response.ok) {
-      renderSyncStatus("Synk misslyckades. Försöker igen senare.");
+      renderSyncStatus(`Synk misslyckades (HTTP ${response.status}). Försöker igen senare.`);
       return;
     }
     state.syncQueue.shift();

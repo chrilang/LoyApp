@@ -14,5 +14,19 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(caches.match(event.request).then((response) => response || fetch(event.request)));
+  if (event.request.method !== "GET") {
+    return;
+  }
+
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (event.request.url.startsWith(self.location.origin)) {
+          const responseClone = response.clone();
+          void caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request)),
+  );
 });

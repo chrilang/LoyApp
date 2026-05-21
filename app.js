@@ -148,6 +148,7 @@ async function trySyncQueue() {
   }
 
   const queueSnapshot = [...state.syncQueue];
+  let successfullySynced = 0;
   for (const event of queueSnapshot) {
     let response;
     try {
@@ -157,14 +158,25 @@ async function trySyncQueue() {
         body: JSON.stringify(event),
       });
     } catch {
+      if (successfullySynced > 0) {
+        state.syncQueue.splice(0, successfullySynced);
+        saveState();
+      }
       renderSyncStatus("Synk misslyckades (nätverksfel). Försöker igen senare.");
       return;
     }
     if (!response.ok) {
+      if (successfullySynced > 0) {
+        state.syncQueue.splice(0, successfullySynced);
+        saveState();
+      }
       renderSyncStatus(`Synk misslyckades (HTTP ${response.status}). Försöker igen senare.`);
       return;
     }
-    state.syncQueue.shift();
+    successfullySynced += 1;
+  }
+  if (successfullySynced > 0) {
+    state.syncQueue.splice(0, successfullySynced);
   }
   saveState();
   renderSyncStatus("Synk slutförd.");

@@ -12,7 +12,7 @@ Detta repository innehåller ett första MVP av en lojalitetsapp (klippkort) som
 Öppna projektet via en enkel webbserver:
 
 ```bash
-cd <project-directory>
+cd LoyApp
 python3 -m http.server 8000
 ```
 
@@ -26,4 +26,6 @@ python3 -m http.server 8000
 - Offline-stöd via service worker
 - Köad synklogik som försöker skicka händelser när appen är online och synk är tillåten
 
-> Notera: i MVP finns ingen backend i repot. Synk är därför förberedd med endpoint-konfiguration i klienten.
+> Notera: i MVP finns ingen backend i repot. Synk är därför förberedd med endpoint-konfiguration i klienten (`SYNC_ENDPOINT` i `app.js`).
+>
+> MVP:t använder svenska texter eftersom kravbilden är på svenska. Internationalisering kan läggas till i senare version.

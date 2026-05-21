@@ -18,10 +18,13 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  const { request } = event;
   event.respondWith(
     caches
-      .match(event.request)
-      .then((cached) => cached || fetch(event.request))
-      .catch(() => caches.match("./index.html"))
+      .match(request)
+      .then((cached) => cached || fetch(request))
+      .catch(() =>
+        request.mode === "navigate" ? caches.match("./index.html") : Response.error()
+      )
   );
 });

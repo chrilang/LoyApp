@@ -9,8 +9,7 @@ if ("serviceWorker" in navigator) {
     } catch (error) {
       const status = document.getElementById("status");
       if (status) {
-        const details = error instanceof Error ? ` (${error.message})` : "";
-        status.textContent = `Files are back, but offline support could not be enabled.${details}`;
+        status.textContent = "Files are back, but offline support could not be enabled.";
       }
       console.error(error);
     }

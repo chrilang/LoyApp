@@ -5,7 +5,7 @@ const merchants = [
   {
     id: "fika-hornan",
     name: "Fika Hörnan",
-    rewardText: "8 klipp = 1 valfri kaffe",
+    rewardText: "8 klipp = 1 valfritt kaffe",
     requiredPunches: 8,
     theme: { primary: "#9c6644", secondary: "#f4d6c6", accent: "#5c3a21" },
   },

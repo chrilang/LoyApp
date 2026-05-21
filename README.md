@@ -12,7 +12,7 @@ Detta repository innehåller ett första MVP av en lojalitetsapp (klippkort) som
 Öppna projektet via en enkel webbserver:
 
 ```bash
-cd /home/runner/work/LoyApp/LoyApp
+cd <project-directory>
 python3 -m http.server 8000
 ```
 

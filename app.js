@@ -1,4 +1,5 @@
 const STORAGE_KEY = "loyapp_mvp_state_v1";
+// Sätt endpoint-url här när ett centralt API finns tillgängligt.
 const SYNC_ENDPOINT = "";
 
 const merchants = [

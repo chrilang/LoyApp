@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoyApp MVP</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>LoyApp MVP</h1>
+      <p class="subtitle">Digitalt klippkort som fungerar offline först.</p>
+
+      <section class="controls">
+        <label for="merchant">Välj butik/kafé</label>
+        <select id="merchant"></select>
+      </section>
+
+      <section class="card" id="card">
+        <div class="card-header">
+          <h2 id="merchantName"></h2>
+          <p id="rewardText"></p>
+        </div>
+        <div id="punches" class="punches" aria-live="polite"></div>
+        <p id="progress" class="progress"></p>
+      </section>
+
+      <section class="actions">
+        <button id="addPunch" type="button">Lägg till klipp</button>
+        <button id="redeem" type="button">Lös in belöning</button>
+      </section>
+
+      <section class="sync">
+        <label class="checkbox">
+          <input id="allowSync" type="checkbox" />
+          Tillåt synk med centralt system när internet finns
+        </label>
+        <p id="syncStatus" class="status"></p>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

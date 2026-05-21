@@ -1,0 +1,9 @@
+{
+  "name": "LoyApp MVP",
+  "short_name": "LoyApp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#3a6ea5",
+  "icons": []
+}
